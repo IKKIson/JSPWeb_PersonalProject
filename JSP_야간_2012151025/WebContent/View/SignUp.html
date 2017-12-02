@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>회원가입페이지</title>
+</head>
+<body>
+<center>
+<span style="font-weight: bold; font-size: 2em; line-height: 1.0em; color: navy; font-family: arial; ">
+호텔 예약 사이트
+</span>
+<hr><br>
+</center>
+
+<br><br>
+
+<form method = "post" action = "/ViewJSP/SignUp.jsp">
+아이디 : <input type = "text" name = "userid" width = "50"><br><br>
+패스워드 : <input type = "password" name = "password" width = "50"><br><br>
+이름 : <input type = "text" name = "username" width = "50"><br><br>
+이메일 : <input type = "text" name = "email" width = "50"><br><br>
+전화번호 : <input type = "text" name = "tell" width = "50"><br><br>
+<input type = "submit" value = "가입완료">
+<input type = "reset" value = "취소" onclick = "document.location.href='Login.html';"/>
+</form>
+
+</body>
+</html>
