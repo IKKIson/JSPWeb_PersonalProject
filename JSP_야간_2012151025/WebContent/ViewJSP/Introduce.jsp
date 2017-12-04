@@ -12,10 +12,12 @@ ArrayList<RoomTypeTable> roomTypelist = roomTypeDAO.selectAllRoomType();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>호텔객식안내</title>
 </head>
-<body>
-
+<body bgcolor="FFFF99">
+<span style="font-weight: bold; font-size: 2em; line-height: 1.0em; color: 660000; font-family: arial; ">
+객실안내
+</span>
 <h1>객실 안내</h1><hr><br><br>
 <%
 for(int i = 0; i<roomTypelist.size(); i++){
