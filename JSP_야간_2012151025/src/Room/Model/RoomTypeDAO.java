@@ -3,14 +3,15 @@ package Room.Model;
 import java.sql.*;
 import java.util.*;
 
-import DatabaseManager.HotelDatabase;
+import DatabaseManager.HotelDatabaseConnection;
 
 public class RoomTypeDAO {
 	
-	private HotelDatabase hotelDatabase;
+	private HotelDatabaseConnection hotelDatabase;
 	
 	public RoomTypeDAO() {
-		this.hotelDatabase = new HotelDatabase();
+		this.hotelDatabase = new HotelDatabaseConnection();
+		System.out.println("RoomTypeDAO:call HotelDatabase connection!!!");
 	}
 
 /*	public RoomTypeTable selectUser(String userid) {
@@ -42,19 +43,20 @@ public class RoomTypeDAO {
 		
 		try {
 			PreparedStatement ps 
-			= this.hotelDatabase.conn.prepareStatement("select * from roomtype;");
+			= this.hotelDatabase.conn.prepareStatement("select * from roomtype");
 			ResultSet rs = ps.executeQuery();
-			
+			System.out.println("RoomTypeDAO:selectAllRoomType(): conn and Preparedstatement");
 			while(rs.next()){
 				RoomTypeTable room = new RoomTypeTable();
 				room.setRoomtype(rs.getInt("roomtype"));
-				room.setRoomname(rs.getString("roomname"));
+				room.setName(rs.getString("name"));
 				room.setCapacity(rs.getInt("capacity"));
 				room.setPrice(rs.getInt("price"));
 				room.setAmount(rs.getInt("amount"));
 				room.setExplanation(rs.getString("explanation"));
 
 				roomTypelist.add(room);
+				System.out.println("RoomTypeDAO:selectAllRoomType(): " + rs.getInt("roomtype"));
 				room = null;
 			}
 			ps.close();			
@@ -62,7 +64,7 @@ public class RoomTypeDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-		
+		System.out.println("RoomTypeDAO:Call selectAllRoomType()!!!");
 		return roomTypelist;
 	}
 		

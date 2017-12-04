@@ -12,8 +12,8 @@ public class UserTable {
 	private String creditcard;
 	
 	//use for user state - Login in Website and Stay in Hotel 
-	private boolean bLogin;
-	private boolean bStay;
+	private boolean bLogin = false;
+	private boolean bStay = false;
 	
 	public boolean isbLogin() {
 		return bLogin;

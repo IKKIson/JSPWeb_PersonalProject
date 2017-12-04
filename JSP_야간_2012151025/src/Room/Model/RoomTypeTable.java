@@ -3,7 +3,7 @@ package Room.Model;
 public class RoomTypeTable {
 	//Database Columns
 	private int roomtype;
-	private String roomname;
+	private String name;
 	private int capacity;
 	private int price;
 	private int amount;
@@ -15,11 +15,11 @@ public class RoomTypeTable {
 	public void setRoomtype(int roomtype) {
 		this.roomtype = roomtype;
 	}
-	public String getRoomname() {
-		return roomname;
+	public String getName() {
+		return name;
 	}
-	public void setRoomname(String roomname) {
-		this.roomname = roomname;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getCapacity() {
 		return capacity;

@@ -2,14 +2,15 @@ package DatabaseManager;
 
 import java.sql.*;
 
-public class HotelDatabase {
+public class HotelDatabaseConnection {
 //    private volatile static HotelDatabase HotelDatabaseUniqueInstance;
     private static final String root = "root";
 	private static final String passwd = "ihson83729405";
 	private static final String strUrl = "jdbc:mysql://127.0.0.1:3306/jsp_¾ß°£_2012151025";
+	
 	public Connection conn;
 
-    public HotelDatabase() {
+    public HotelDatabaseConnection() {
     	System.setProperty("jdbc.drivers","com.mysql.jdbc.Driver");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -24,6 +25,8 @@ public class HotelDatabase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println("New HotelDatabase connection!!!");
     }
 
 //    public HotelDatabase getInstance() {
@@ -35,4 +38,12 @@ public class HotelDatabase {
 //	public Connection getConn(){
 //		return conn;
 //	}    
+    
+//	@Override
+//	protected void finalize() throws Throwable {
+//		// TODO Auto-generated method stub
+//		this.conn.close();
+//		
+//		super.finalize();
+//	}
 }
