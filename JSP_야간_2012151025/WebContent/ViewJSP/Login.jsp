@@ -28,9 +28,9 @@ if(newUser.isbLogin()){
 }
 else{
 	user=null;
-	response.sendRedirect("../View/Login.html");
+	//response.sendRedirect("../View/Login.html");
 %>
-	<script>alert('로그인실패') document.loaction.href = '../View/Login.html';</script>
+	<script>alert('로그인실패') 알람창 내용 테스트입니다. document.loaction.href = '../View/Login.html';</script>
 <%
 }
 %>

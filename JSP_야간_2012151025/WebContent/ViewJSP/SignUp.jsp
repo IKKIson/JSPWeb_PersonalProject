@@ -27,8 +27,20 @@ UserDAO ud = new UserDAO();
 //ud.InsertUser(user.getEmailid(), user.getPassword(), user.getUsername(), user.getTell(),user.getBirthday(), user.getCreditcard());
 out.println("Sign Up page Successed<br><br>");
 
+
+if(true) { // SignUp element is all full 
+	out.println("<script>alert('회원가입 완료')</script>");
+	out.println("<h2>TODO:회원가입 성공 후 DB에 잘 들어갔네 확인해주는 페이지</h2><br><br>");
+
+} else { // SignUp element has empty more than one
+	out.println("<script>alert('회원가입 실패')");
+	out.println("document.location.href = '../View/SignUp.html';</script>");
+}
+
 %>
 
+
+<hr>
 <button type = "button" onclick = "document.location.href='../View/Login.html';">로그인하기</button>
 
 </body>

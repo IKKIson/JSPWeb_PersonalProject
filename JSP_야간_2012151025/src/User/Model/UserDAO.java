@@ -96,6 +96,25 @@ public class UserDAO {
 		return userlist;
 	}
 	
+	//Find My password using emailid
+	public String SelectFindPassword(String inputid) {
+		String password = new String();
+		try {
+			PreparedStatement ps 
+			= this.hotelDatabase.conn.prepareStatement("select password from user where where emailid = ?");
+			ps.setString(1, inputid);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			
+			password.concat(rs.getString("userid"));
+			ps.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return password;
+	}
+	
 	@Override
 	protected void finalize() throws Throwable {
 		// TODO Auto-generated method stub
