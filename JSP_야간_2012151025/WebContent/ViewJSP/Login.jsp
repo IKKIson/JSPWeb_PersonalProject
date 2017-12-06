@@ -16,22 +16,21 @@
 
 <%
 UserDAO ud = new UserDAO();
-
 UserTable newUser = ud.isLogin(user.getEmailid(), user.getPassword());
 
 // 로그인 성공 실패 여부
 if(newUser.isbLogin()){
-	response.sendRedirect("../View/Main.html");
-%>
-	<script>alert('로그인성공') document.loaction.href = '../View/Main.html';</script>
-<%	
+	//response.sendRedirect("../View/Main.html");
+	out.println("<script>alert('로그인 성공')");
+	out.println("document.location.href = '../View/Main.html';</script>");
+	
 }
 else{
 	user=null;
 	//response.sendRedirect("../View/Login.html");
-%>
-	<script>alert('로그인실패') 알람창 내용 테스트입니다. document.loaction.href = '../View/Login.html';</script>
-<%
+
+	out.println("<script>alert('로그인 실패')");
+	out.println("document.location.href = '../View/Login.html';</script>");
 }
 %>
 

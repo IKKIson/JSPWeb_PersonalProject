@@ -21,6 +21,7 @@ public class HotelDatabaseConnection {
 		
 		try {
 			conn = DriverManager.getConnection(this.strUrl, this.root, this.passwd);
+			conn.setAutoCommit(false); //이 기능을 사용X
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

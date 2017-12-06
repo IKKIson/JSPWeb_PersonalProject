@@ -2,7 +2,9 @@ package User.Model;
 
 import java.sql.*;
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.*;
+import User.Action.*;
 
 import DatabaseManager.HotelDatabaseConnection;
 
@@ -28,9 +30,9 @@ public class UserDAO {
 			if(user.isbLogin()) {
 				user.setEmailid(rs.getString("emailid"));
 				user.setPassword(rs.getString("password"));
-				user.setUsername(rs.getString("password"));
+				user.setUsername(rs.getString("username"));
 				user.setTell(rs.getInt("tell"));
-				user.setBirthday(rs.getDate("birthday"));
+				user.setBirthday(new ConvertDateWithString().ConvertDateToString(rs.getDate("birthday")));
 				user.setCreditcard(rs.getString("creditcard"));
 			}
 			else {
@@ -45,8 +47,8 @@ public class UserDAO {
 		return user;
 	}
 	
-	//check for login
-	public void InsertUser(String emailid, String pw, String name, int tel, Date birth, String card) {
+	//check for New Sign Up
+	public void InsertUser(String emailid, String pw, String name, int tel, String birth, String card) throws ParseException {
 		try {
 			PreparedStatement ps
 			= this.hotelDatabase.conn.prepareStatement("insert into user values(?,?,?,?,?,?)");
@@ -54,7 +56,7 @@ public class UserDAO {
 			ps.setString(2, pw);
 			ps.setString(3, name);
 			ps.setInt(4, tel);
-			ps.setDate(5, birth);
+			ps.setDate(5, new ConvertDateWithString().ConvertStringToDate(birth));
 			ps.setString(6, card);
 			
 			ps.executeUpdate();
@@ -82,7 +84,7 @@ public class UserDAO {
 				user.setPassword(rs.getString("password"));
 				user.setUsername(rs.getString("username"));
 				user.setTell(rs.getInt("tell"));
-				user.setBirthday(rs.getDate("birthday"));
+				user.setBirthday(new ConvertDateWithString().ConvertDateToString(rs.getDate("birthday")));
 				user.setCreditcard(rs.getString("creditcard"));
 				
 				userlist.add(user);
@@ -96,24 +98,24 @@ public class UserDAO {
 		return userlist;
 	}
 	
-	//Find My password using emailid
-	public String SelectFindPassword(String inputid) {
-		String password = new String();
-		try {
-			PreparedStatement ps 
-			= this.hotelDatabase.conn.prepareStatement("select password from user where where emailid = ?");
-			ps.setString(1, inputid);
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			
-			password.concat(rs.getString("userid"));
-			ps.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return password;
-	}
+//	//Find My password using emailid
+//	public String SelectFindPassword(String inputid) {
+//		String password = new String();
+//		try {
+//			PreparedStatement ps 
+//			= this.hotelDatabase.conn.prepareStatement("select password from user where where emailid = ?");
+//			ps.setString(1, inputid);
+//			ResultSet rs = ps.executeQuery();
+//			rs.next();
+//			
+//			password.concat(rs.getString("userid"));
+//			ps.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return password;
+//	}
 	
 	@Override
 	protected void finalize() throws Throwable {

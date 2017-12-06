@@ -8,12 +8,12 @@ public class UserTable {
 	private String password;
 	private String username;
 	private int tell;
-	private Date birthday;
+	private String birthday;
 	private String creditcard;
 	
 	//use for user state - Login in Website and Stay in Hotel 
-	private boolean bLogin = false;
-	private boolean bStay = false;
+	private boolean bLogin;
+	private boolean bStay;
 	
 	public boolean isbLogin() {
 		return bLogin;
@@ -53,10 +53,10 @@ public class UserTable {
 	public void setTell(int tell) {
 		this.tell = tell;
 	}
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	public String getCreditcard() {

@@ -1,10 +1,29 @@
+<%@page import="User.Action.ConvertDateWithString"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 
 <%@ page import="User.Model.*" %>    
+<%@ page import="User.Action.*" %>    
 
 <jsp:useBean id="user" class="User.Model.UserTable" scope="request" />
 <jsp:setProperty property="*" name="user"/> 
+
+
+<%
+if(user.getEmailid() !=null && user.getPassword() !=null && user.getUsername() !=null && user.getTell() !=0 && user.getBirthday() !=null && user.getCreditcard() !=null) { // SignUp element is all full 
+	UserDAO ud = new UserDAO();
+	ud.InsertUser(user.getEmailid(), user.getPassword(), user.getUsername(), user.getTell(),user.getBirthday(), user.getCreditcard());
+	out.println("Sign Up page Successed<br><br>");
+	
+	out.println("<script>alert('회원가입 완료')</script>");
+	out.println("<h2>TODO:회원가입 성공 후 DB에 잘 들어갔네 확인해주는 페이지</h2><br><br>");
+
+} else { // SignUp element has empty more than one
+	out.println("<script>alert('회원가입 실패 정보를 정확인 기재해주세요')");
+	out.println("document.location.href = '../View/SignUp.html';</script>");
+}
+
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,24 +40,6 @@
 <h1>회원가입 감사합니다.</h1>
 <hr><br>
 </center>
-
-<%
-UserDAO ud = new UserDAO();
-//ud.InsertUser(user.getEmailid(), user.getPassword(), user.getUsername(), user.getTell(),user.getBirthday(), user.getCreditcard());
-out.println("Sign Up page Successed<br><br>");
-
-
-if(true) { // SignUp element is all full 
-	out.println("<script>alert('회원가입 완료')</script>");
-	out.println("<h2>TODO:회원가입 성공 후 DB에 잘 들어갔네 확인해주는 페이지</h2><br><br>");
-
-} else { // SignUp element has empty more than one
-	out.println("<script>alert('회원가입 실패')");
-	out.println("document.location.href = '../View/SignUp.html';</script>");
-}
-
-%>
-
 
 <hr>
 <button type = "button" onclick = "document.location.href='../View/Login.html';">로그인하기</button>
