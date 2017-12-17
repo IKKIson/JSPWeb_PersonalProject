@@ -1,4 +1,4 @@
-package User.Action;
+package Controller;
 
 public class LoginCheckAction {
 

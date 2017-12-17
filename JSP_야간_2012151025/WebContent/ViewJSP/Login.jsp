@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="User.Model.*" %>    
+<%@ page import = "DAO.*" %>  
+<%@ page import = "Model.*" %>  
 
-<jsp:useBean id="user" class="User.Model.UserTable" scope="request" />
+<jsp:useBean id="user" class="Model.UserTable" scope="request" />
 <jsp:setProperty property="*" name="user"/>
 
 
@@ -17,13 +18,14 @@
 <%
 UserDAO ud = new UserDAO();
 UserTable newUser = ud.isLogin(user.getEmailid(), user.getPassword());
-
+session.invalidate();
 // 로그인 성공 실패 여부
 if(newUser.isbLogin()){
 	//response.sendRedirect("../View/Main.html");
 	out.println("<script>alert('로그인 성공')");
 	out.println("document.location.href = '../View/Main.html';</script>");
-	
+	session.setAttribute("sessionId", user.getEmailid());
+	session.setAttribute("sessionPw", user.getPassword());
 }
 else{
 	user=null;

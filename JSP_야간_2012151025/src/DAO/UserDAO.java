@@ -1,10 +1,10 @@
-package User.Model;
+package DAO;
 
 import java.sql.*;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.*;
-import User.Action.*;
+import Model.UserTable;
 
 import DatabaseManager.HotelDatabaseConnection;
 
@@ -32,7 +32,7 @@ public class UserDAO {
 				user.setPassword(rs.getString("password"));
 				user.setUsername(rs.getString("username"));
 				user.setTell(rs.getInt("tell"));
-				user.setBirthday(new ConvertDateWithString().ConvertDateToString(rs.getDate("birthday")));
+				user.setBirthday(rs.getInt("birthday"));
 				user.setCreditcard(rs.getString("creditcard"));
 			}
 			else {
@@ -48,24 +48,34 @@ public class UserDAO {
 	}
 	
 	//check for New Sign Up
-	public void InsertUser(String emailid, String pw, String name, int tel, String birth, String card) throws ParseException {
+	public void InsertUser(String emailid, String pw, String name, int tel, int birth, String card) throws ParseException {
+		PreparedStatement ps = null;
 		try {
-			PreparedStatement ps
-			= this.hotelDatabase.conn.prepareStatement("insert into user values(?,?,?,?,?,?)");
+			ps = this.hotelDatabase.conn.prepareStatement("insert into user values (?,?,?,?,?,?)");
 			ps.setString(1, emailid);
 			ps.setString(2, pw);
 			ps.setString(3, name);
 			ps.setInt(4, tel);
-			ps.setDate(5, new ConvertDateWithString().ConvertStringToDate(birth));
+			ps.setInt(5, birth);
 			ps.setString(6, card);
+			ps.addBatch();			
+
+			System.out.println("SignUp New Member in InsertUser()");
 			
-			ps.executeUpdate();
-			
-			ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		} finally {
+			try {
+				ps.executeBatch();
+				ps.close();
+				this.hotelDatabase.conn.commit();
+				//this.hotelDatabase.conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	//check Members for sign up
@@ -84,7 +94,7 @@ public class UserDAO {
 				user.setPassword(rs.getString("password"));
 				user.setUsername(rs.getString("username"));
 				user.setTell(rs.getInt("tell"));
-				user.setBirthday(new ConvertDateWithString().ConvertDateToString(rs.getDate("birthday")));
+				user.setBirthday(rs.getInt("birthday"));
 				user.setCreditcard(rs.getString("creditcard"));
 				
 				userlist.add(user);
@@ -97,25 +107,6 @@ public class UserDAO {
 		
 		return userlist;
 	}
-	
-//	//Find My password using emailid
-//	public String SelectFindPassword(String inputid) {
-//		String password = new String();
-//		try {
-//			PreparedStatement ps 
-//			= this.hotelDatabase.conn.prepareStatement("select password from user where where emailid = ?");
-//			ps.setString(1, inputid);
-//			ResultSet rs = ps.executeQuery();
-//			rs.next();
-//			
-//			password.concat(rs.getString("userid"));
-//			ps.close();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return password;
-//	}
 	
 	@Override
 	protected void finalize() throws Throwable {

@@ -1,9 +1,10 @@
-package User.Action;
+package Controller;
 
 import java.sql.Date;
+import Model.UserTable;
 import java.util.ArrayList;
+import DAO.UserDAO;
 
-import User.Model.*;
 
 public class SignUpCheckAction {
 	private UserTable userTable;

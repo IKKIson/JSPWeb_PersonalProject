@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "DAO.*" %>  
+<%@ page import = "Model.*" %>  
+<%@ page import = "java.util.*" %>
+<%@ page import = "java.text.SimpleDateFormat;"%>  
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>객실예약</title>
 </head>
-<body>
-
 <body bgcolor="FFFF99">
 <center>
 
@@ -16,34 +19,68 @@
 </span>
 </center>
 
-객실 종류 : <input type = "text" name = "email" width = "50"><br><br>
-<input type="radio" name="chk_info" value="수페리어">수페리어
-<br>
-<input type="radio" name="chk_info" value="더블 수페리어">더블 수페리어
-<br>
-<input type="radio" name="chk_info" value="트윈 수페리어">트윈 수페리어
-<br>
-<input type="radio" name="chk_info" value="디럭스">디럭스
-<br>
-<input type="radio" name="chk_info" value="디럭스 풀">디럭스 풀
-<br>
-<input type="radio" name="chk_info" value="이그제큐디브">이그제큐디브
-<br>
-<input type="radio" name="chk_info" value="스위트">스위트
-<br>
-<input type="radio" name="chk_info" value="그랜드 스위트">그랜드 스위트
-<br>
+<%
+ReservationTable reservationTable = null;
 
-객실 호수(층): <input type = "password" name = "password" width = "50"><br><br>
-
-<jsp:forward page="Calendar.jsp">
-<jsp:param value="조희" name="date"/>
-체크인 <br>
-체크아웃 <br>
-<br><br>
+/*
+	private int reservatecode;*
+	private String emailid;*
+	private int roomtype;*
+	private int roomid;
+	private int price;
+	private String reservatedate;*
+	private String checkin;
+	private String checkout;
+*/
+//예약
+if(request.getParameter("rdoRoom") != null && request.getParameter("checkin") != null && request.getParameter("checkout") != null) {
+		
+	//1. input roomtype
+	if(request.getParameter("rdoRoom").equals("수페리어")) {
+		reservationTable.setRoomtype(1);
+    } else if(request.getParameter("rdoRoom").equals("더블 수페리어")) {
+    	reservationTable.setRoomtype(2);
+    } else if(request.getParameter("rdoRoom").equals("트윈 수페리어")) {
+    	reservationTable.setRoomtype(3);
+    } else if(request.getParameter("rdoRoom").equals("디럭스")) {
+    	reservationTable.setRoomtype(4);
+    } else if(request.getParameter("rdoRoom").equals("디럭스 풀")) {
+    	reservationTable.setRoomtype(5);
+    } else if(request.getParameter("rdoRoom").equals("이그제큐디브")) {
+    	reservationTable.setRoomtype(6);
+    } else if(request.getParameter("rdoRoom").equals("스위트")) {
+    	reservationTable.setRoomtype(7);
+    } else if(request.getParameter("rdoRoom").equals("그랜드 스위트")) {
+    	reservationTable.setRoomtype(8);
+    }
+	//2. input Primary key- reservation code and reservationdate
+	long time = System.currentTimeMillis(); 
+	SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+	String str = dayTime.format(new Date(time));
+	int timecode = (int) time;
+	reservationTable.setReservatecode(timecode);
 	
-<hr>
-<input type = "reset" value = "취소" onclick = "document.location.href='../View/Main.html';"/>
+	//3. input user emailid using session
+	reservationTable.setEmailid(String.valueOf(session.getAttribute("sessionId")));
+	
+	//4. input room price using roomtypeDB's DAO
+	
+	//5. input room id using roomidDB's DAO and Random()
+	
+	//6. input checkin and checkout
+	
+	
+	
+	
+	
+} else {
+	out.println("<script>alert('예약실패. 정확히 입력해주세요')");
+	out.println("document.location.href = '../View/Reservation.html';</script>");
+}
+            
+%>
+
+
 
 </body>
 </html>

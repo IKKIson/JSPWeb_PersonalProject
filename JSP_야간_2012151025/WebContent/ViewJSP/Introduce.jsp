@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     
-<%@ page import = "Room.Model.*" %>  
+<%@ page import = "DAO.*" %>  
+<%@ page import = "Model.*" %>  
 <%@ page import = "java.util.*" %>  
 <%
 RoomTypeDAO roomTypeDAO = new RoomTypeDAO();

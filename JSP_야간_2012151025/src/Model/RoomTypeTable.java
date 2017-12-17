@@ -1,4 +1,4 @@
-package Room.Model;
+package Model;
 
 public class RoomTypeTable {
 	//Database Columns

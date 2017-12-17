@@ -1,4 +1,4 @@
-package User.Model;
+package Model;
 
 import java.sql.Date;
 
@@ -8,24 +8,17 @@ public class UserTable {
 	private String password;
 	private String username;
 	private int tell;
-	private String birthday;
+	private int birthday;
 	private String creditcard;
 	
 	//use for user state - Login in Website and Stay in Hotel 
 	private boolean bLogin;
-	private boolean bStay;
 	
 	public boolean isbLogin() {
 		return bLogin;
 	}
 	public void setbLogin(boolean bLogin) {
 		this.bLogin = bLogin;
-	}
-	public boolean isbStay() {
-		return bStay;
-	}
-	public void setbStay(boolean bStay) {
-		this.bStay = bStay;
 	}
 	
 	
@@ -53,10 +46,10 @@ public class UserTable {
 	public void setTell(int tell) {
 		this.tell = tell;
 	}
-	public String getBirthday() {
+	public int getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(String birthday) {
+	public void setBirthday(int birthday) {
 		this.birthday = birthday;
 	}
 	public String getCreditcard() {

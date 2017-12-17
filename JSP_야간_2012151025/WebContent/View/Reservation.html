@@ -12,24 +12,25 @@
 </span>
 </center>
 
-<form action="/ViewJSP/Reservation.jsp" method="post"/>
-	객실 종류 : <input type = "text" name = "email" width = "50"><br><br>
-	<input type="radio" name="chk_info" value="수페리어">수페리어
-	<input type="radio" name="chk_info" value="더블 수페리어">더블 수페리어
-	<input type="radio" name="chk_info" value="트윈 수페리어">트윈 수페리어
-	<input type="radio" name="chk_info" value="디럭스">디럭스
-	<input type="radio" name="chk_info" value="디럭스 풀">디럭스 풀
-	<input type="radio" name="chk_info" value="이그제큐디브">이그제큐디브
-	<input type="radio" name="chk_info" value="스위트">스위트
-	<input type="radio" name="chk_info" value="그랜드 스위트">그랜드 스위트
-	
-	객실 호수(층): <input type = "password" name = "password" width = "50"><br><br>
-
-	체크인 
-	체크아웃
-
-<input type = "reset" value = "취소" onclick = "document.location.href='Main.html';"/>
+<form action="../ViewJSP/Reservation.jsp" method="post">
+	<h2>[객실 종류]</h2><br>
+	<input type="radio" name="rdoRoom" value="수페리어">수페리어<br>
+	<input type="radio" name="rdoRoom" value="더블 수페리어">더블 수페리어<br>
+	<input type="radio" name="rdoRoom" value="트윈 수페리어">트윈 수페리어<br>
+	<input type="radio" name="rdoRoom" value="디럭스">디럭스<br>
+	<input type="radio" name="rdoRoom" value="디럭스 풀">디럭스 풀<br>
+	<input type="radio" name="rdoRoom" value="이그제큐디브">이그제큐디브<br>
+	<input type="radio" name="rdoRoom" value="스위트">스위트<br>
+	<input type="radio" name="rdoRoom" value="그랜드 스위트">그랜드 스위트<br>
+	<br><br>
+	<h2>[숙박일]</h2><br>
+	체크인 : <input type = "number" name = "checkin" width = "50"><br>
+	체크아웃 : <input type = "number" name = "checkout" width = "50"><br>
+	<br><br>
+	<input type = "submit" value = "예약하기"><br><br>
+	<input type = "reset" value = "취소" onclick = "document.location.href='../View/Main.html';"/>
 </form>
+
 
 </body>
 </html>

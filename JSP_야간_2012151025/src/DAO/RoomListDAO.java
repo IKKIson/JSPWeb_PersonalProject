@@ -1,43 +1,23 @@
-package Room.Model;
+package DAO;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import DatabaseManager.HotelDatabaseConnection;
+import Model.RoomTypeTable;
 
-public class RoomTypeDAO {
+public class RoomListDAO {
+private HotelDatabaseConnection hotelDatabase;
 	
-	private HotelDatabaseConnection hotelDatabase;
-	
-	public RoomTypeDAO() {
+	public RoomListDAO() {
 		this.hotelDatabase = new HotelDatabaseConnection();
 		System.out.println("RoomTypeDAO:call HotelDatabase connection!!!");
 	}
 
-/*	public RoomTypeTable selectUser(String userid) {
-		RoomTypeTable user = new RoomTypeTable();
-		
-		try {
-			PreparedStatement ps 
-			= hotelDatabase.getConn().prepareStatement("select * from user where userid=?");
-			ps.setString(1, userid);
-			
-			ResultSet rs = ps.executeQuery();			
-			rs.next();			
-			
-			user.setUserid(rs.getString("userid"));
-			user.setPassword(rs.getString("password"));
-			
-			ps.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return user;
-	}*/
-	
-	//select all rooomtype for introduce page
+	//select all rooomid for check page
+	//TODO : 처음부터 만들어야됨
 	public ArrayList<RoomTypeTable> selectAllRoomType() {
 		ArrayList<RoomTypeTable> roomTypelist = new ArrayList<RoomTypeTable>();
 		
