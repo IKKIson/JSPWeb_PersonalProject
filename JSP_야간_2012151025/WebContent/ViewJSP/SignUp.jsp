@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ page import = "DAO.*" %>  
 <%@ page import = "Model.*" %>     
+
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <jsp:useBean id="user" class="Model.UserTable" scope="request" />
 <jsp:setProperty property="*" name="user"/> 
@@ -11,18 +12,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>È¸¿ø°¡ÀÔ¿Ï·á</title>
+<title>íšŒì›ê°€ì…ì™„ë£Œ</title>
 </head>
 <body bgcolor="FFFF99">
 
 <center>
 
 <span style="font-weight: bold; font-size: 2em; line-height: 1.0em; color: 660000; font-family: arial; ">
-½Å±Ô°¡ÀÔ ¿Ï·á
+ì‹ ê·œê°€ì… ì™„ë£Œ
 </span>
-<h1>È¸¿ø°¡ÀÔ °¨»çÇÕ´Ï´Ù.</h1>
+<h1>íšŒì›ê°€ì… ê°ì‚¬í•©ë‹ˆë‹¤.</h1>
 <hr><br>
 </center>
+
+
 
 <%
 if(user.getEmailid() !=null && user.getPassword() !=null && user.getUsername() !=null && user.getTell() !=0 && user.getBirthday() != 0 && user.getCreditcard() !=null) { // SignUp element is all full 
@@ -30,24 +33,24 @@ if(user.getEmailid() !=null && user.getPassword() !=null && user.getUsername() !
 	ud.InsertUser(user.getEmailid(), user.getPassword(), user.getUsername(), user.getTell(),user.getBirthday(), user.getCreditcard());
 	
 	out.println("Sign Up page Successed<br><br>");
-	out.println("<script>alert('È¸¿ø°¡ÀÔ ¿Ï·á')</script>");
+	out.println("<script>alert('íšŒì›ê°€ì… ì™„ë£Œ')</script>");
 	
-	out.println("¾ÆÀÌµğ : " + user.getEmailid() + "<br>");
-	out.println("ºñ¹Ğ¹øÈ£ : " + user.getPassword() + "<br>");
-	out.println("¼º¸í : " + user.getUsername() + "<br>");
-	out.println("ÀüÈ­¹øÈ£ : " + user.getTell() + "<br>");
-	out.println("»ı³â¿ùÀÏ : " + user.getBirthday() + "<br>");
-	out.println("°áÁ¦ : " + user.getCreditcard() + "<br>");
+	out.println("ì•„ì´ë”” : " + user.getEmailid() + "<br>");
+	out.println("ë¹„ë°€ë²ˆí˜¸ : " + user.getPassword() + "<br>");
+	out.println("ì„±ëª… : " + user.getUsername() + "<br>");
+	out.println("ì „í™”ë²ˆí˜¸ : " + user.getTell() + "<br>");
+	out.println("ìƒë…„ì›”ì¼ : " + user.getBirthday() + "<br>");
+	out.println("ê²°ì œ : " + user.getCreditcard() + "<br>");
 	
 } else { // SignUp element has empty more than one
-	out.println("<script>alert('È¸¿ø°¡ÀÔ ½ÇÆĞ Á¤º¸¸¦ Á¤È®ÀÎ ±âÀçÇØÁÖ¼¼¿ä')");
+	out.println("<script>alert('íšŒì›ê°€ì… ì‹¤íŒ¨ ì •ë³´ë¥¼ ì •í™•ì¸ ê¸°ì¬í•´ì£¼ì„¸ìš”')");
 	out.println("document.location.href = '../View/SignUp.html';</script>");
 }
 
 %>
 <br>
 <hr>
-<button type = "button" onclick = "document.location.href='../View/Login.html';">·Î±×ÀÎÇÏ±â</button>
+<button type = "button" onclick = "document.location.href='../View/Login.html';">ë¡œê·¸ì¸í•˜ê¸°</button>
 
 </body>
 </html>

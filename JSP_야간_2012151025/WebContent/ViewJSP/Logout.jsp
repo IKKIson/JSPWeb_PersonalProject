@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-
+<%
+	session.invalidate();
+	out.println("<script>alert('·Î±×¾Æ¿ô')");
+	out.println("document.location.href = '../View/Login.html';</script>");
+%>
 </body>
 </html>

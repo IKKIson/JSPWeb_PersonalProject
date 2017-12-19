@@ -27,7 +27,7 @@ public class RoomTypeDAO {
 			while(rs.next()){
 				RoomTypeTable room = new RoomTypeTable();
 				room.setRoomtype(rs.getInt("roomtype"));
-				room.setName(rs.getString("name"));
+				room.setName(rs.getString("roomname"));
 				room.setCapacity(rs.getInt("capacity"));
 				room.setPrice(rs.getInt("price"));
 				room.setAmount(rs.getInt("amount"));
@@ -45,6 +45,67 @@ public class RoomTypeDAO {
 		System.out.println("RoomTypeDAO:Call selectAllRoomType()!!!");
 		return roomTypelist;
 	}
+	
+	//Select - Get Price of Roomtype 
+	public int SelectRoomPrice(int roomtype) {
+		int price = 0;		
+		try {
+			PreparedStatement ps 
+			= this.hotelDatabase.conn.prepareStatement("select price from roomtype where roomtype = ?");
+			ps.setInt(1, roomtype);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			price = rs.getInt("price");
+					 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return price;
+	}
+	
+	//Select - Get NAme of Roomtype 
+	public String SelectRoomName(int roomtype) {
+		String roomname = null;		
+		try {
+			PreparedStatement ps 
+			= this.hotelDatabase.conn.prepareStatement("select roomname from roomtype where roomtype = ?");
+			ps.setInt(1, roomtype);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			roomname = rs.getString("roomname");
+					 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return roomname;
+	}
+	
+
+	//select - get count for roomtype's
+	public int NumberOfRoomTypes(int roomtype){
+		int getNumber = 0;
+		
+		try {
+			PreparedStatement ps 
+			= this.hotelDatabase.conn.prepareStatement("select amount from roomtype where roomtype = ?");
+			ps.setInt(1, roomtype);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			getNumber = rs.getInt("amount");
+
+			ps.close();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		return getNumber;
+	}
+	
 		
 	@Override
 	protected void finalize() throws Throwable {

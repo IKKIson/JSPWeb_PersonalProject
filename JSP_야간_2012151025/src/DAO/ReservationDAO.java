@@ -18,7 +18,7 @@ public class ReservationDAO {
 	
 	//insert - new reservation 
 	//check for New Sign Up
-	public void InsertReservation(int reservatecode, String emailid, int roomtype, int roomid, int price, String reservatedate, int checkin, int checkout) throws ParseException {
+	public void InsertReservation(int reservatecode, String emailid, int roomtype, int roomid, int price, String reservatedate, String checkin, String checkout) throws ParseException {
 		PreparedStatement ps = null;
 		try {
 			ps = this.hotelDatabase.conn.prepareStatement("insert into reservation values (?,?,?,?,?,?,?,?)");
@@ -28,8 +28,8 @@ public class ReservationDAO {
 			ps.setInt(4, roomid);
 			ps.setInt(5, price);
 			ps.setString(6, reservatedate);
-			ps.setInt(7, checkin);
-			ps.setInt(8, checkout);
+			ps.setString(7, checkin);
+			ps.setString(8, checkout);
 			ps.addBatch();			
 			
 		} catch (SQLException e) {
@@ -86,6 +86,7 @@ public class ReservationDAO {
 		try {
 			PreparedStatement ps 
 			= this.hotelDatabase.conn.prepareStatement("select * from reservation where emailid = ?");
+			ps.setString(1, emailid);
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()){
@@ -110,7 +111,33 @@ public class ReservationDAO {
 		return reservationlist;
 	}
 	
-	
+	//select - my reservation receipt
+	public ReservationTable SelectCheckReceipt(int code) {
+		ReservationTable reservationTable = new ReservationTable();
+		try {
+			PreparedStatement ps 
+			= this.hotelDatabase.conn.prepareStatement("select * from reservation where reservationcode = ?");
+			ps.setInt(1, code);
+			ResultSet rs = ps.executeQuery();
+			
+			rs.next();
+
+			reservationTable.setReservatecode(rs.getInt("reservationcode"));
+			reservationTable.setEmailid(rs.getString("emailid"));
+			reservationTable.setRoomtype(rs.getInt("roomtype"));
+			reservationTable.setRoomid(rs.getInt("roomid"));
+			reservationTable.setPrice(rs.getInt("price"));
+			reservationTable.setReservatedate(rs.getString("reservatedate"));
+			reservationTable.setCheckin(rs.getString("checkin"));
+			reservationTable.setCheckout(rs.getString("checkout"));
+			
+			ps.close();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reservationTable;
+	}
 	
 	//delete - cancel reservation - delete from 테이블명 where = 조건;
 	public boolean DeleteReservation(String emailid, int reservatecode) {
@@ -143,15 +170,6 @@ public class ReservationDAO {
 	
 	
 	//update - modify my reservation
-	/*
-update 테이블명
-set 필드명 = 변경할 조건
-where 필드명 = 기존 속성값;
-
-UPDATE 테이블명 SET 필드명 = "바꿀 값", 필드명2 = "바꿀 값" WHERE 조건들
-
-조건에 맞는 두개의 필드를 바꿈
-	 */
 	public boolean UpdateMyReservation(String emailid, int reservatecode, int roomtype, int checkin, int checkout) {
 		boolean isDelete = false;
 		PreparedStatement ps = null;

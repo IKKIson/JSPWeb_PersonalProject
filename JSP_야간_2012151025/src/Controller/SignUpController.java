@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import DAO.UserDAO;
 
 
-public class SignUpCheckAction {
+public class SignUpController {
 	private UserTable userTable;
 	private UserDAO userDAO;
 	private ArrayList<UserTable> userlist;

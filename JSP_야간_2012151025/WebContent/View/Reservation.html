@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body bgcolor="FFFF99">
 <center>
 
 <span style="font-weight: bold; font-size: 2em; line-height: 1.0em; color: 660000; font-family: arial; ">
-°´½Ç ¿¹¾à
+ê°ì‹¤ ì˜ˆì•½
 </span>
 </center>
-
+	
 <form action="../ViewJSP/Reservation.jsp" method="post">
-	<h2>[°´½Ç Á¾·ù]</h2><br>
-	<input type="radio" name="rdoRoom" value="¼öÆä¸®¾î">¼öÆä¸®¾î<br>
-	<input type="radio" name="rdoRoom" value="´õºí ¼öÆä¸®¾î">´õºí ¼öÆä¸®¾î<br>
-	<input type="radio" name="rdoRoom" value="Æ®À© ¼öÆä¸®¾î">Æ®À© ¼öÆä¸®¾î<br>
-	<input type="radio" name="rdoRoom" value="µð·°½º">µð·°½º<br>
-	<input type="radio" name="rdoRoom" value="µð·°½º Ç®">µð·°½º Ç®<br>
-	<input type="radio" name="rdoRoom" value="ÀÌ±×Á¦Å¥µðºê">ÀÌ±×Á¦Å¥µðºê<br>
-	<input type="radio" name="rdoRoom" value="½ºÀ§Æ®">½ºÀ§Æ®<br>
-	<input type="radio" name="rdoRoom" value="±×·£µå ½ºÀ§Æ®">±×·£µå ½ºÀ§Æ®<br>
+	<h2>[ê°ì‹¤ ì¢…ë¥˜]</h2><br>
+	<input type="radio" name="rdoRoom" value="1">ìˆ˜íŽ˜ë¦¬ì–´<br>
+	<input type="radio" name="rdoRoom" value="2">ë”ë¸” ìˆ˜íŽ˜ë¦¬ì–´<br>
+	<input type="radio" name="rdoRoom" value="3">íŠ¸ìœˆ ìˆ˜íŽ˜ë¦¬ì–´<br>
+	<input type="radio" name="rdoRoom" value="4">ë””ëŸ­ìŠ¤<br>
+	<input type="radio" name="rdoRoom" value="5">ë””ëŸ­ìŠ¤ í’€<br>
+	<input type="radio" name="rdoRoom" value="6">ì´ê·¸ì œíë””ë¸Œ<br>
+	<input type="radio" name="rdoRoom" value="7">ìŠ¤ìœ„íŠ¸<br>
+	<input type="radio" name="rdoRoom" value="8">ê·¸ëžœë“œ ìŠ¤ìœ„íŠ¸<br>
+
 	<br><br>
-	<h2>[¼÷¹ÚÀÏ]</h2><br>
-	Ã¼Å©ÀÎ : <input type = "number" name = "checkin" width = "50"><br>
-	Ã¼Å©¾Æ¿ô : <input type = "number" name = "checkout" width = "50"><br>
+	
+	<h2>[ìˆ™ë°•ì¼]</h2><br>
+	<span style="font-weight: bold; font-size: 1.0em; line-height: 1.0em; color: RED; font-family: arial; ">
+	[ì²´í¬ì¸/ì•„ì›ƒ ë‚ ì§œ ìž…ë ¥ë°©ë²•]<br>
+	</span>
+	ì›í•˜ëŠ” ë‚ ì§œ 2017ë…„ 9ì›” 9ì¼ --> 20170909<br>
+	ì²´í¬ì¸ 20170909 <br>
+	ì²´í¬ì•„ì›ƒ 20170911<br>
+	<br>
+	ì²´í¬ì¸ : <input type = "text" name = "checkin" width = "50"><br><br>
+	ì²´í¬ì•„ì›ƒ : <input type = "text" name = "checkout" width = "50"><br><br>
 	<br><br>
-	<input type = "submit" value = "¿¹¾àÇÏ±â"><br><br>
-	<input type = "reset" value = "Ãë¼Ò" onclick = "document.location.href='../View/Main.html';"/>
+	<input type = "submit" value = "ì˜ˆì•½í•˜ê¸°"><br><br>
+	<input type = "reset" value = "ì·¨ì†Œ" onclick = "document.location.href='../View/Main.html';"/>
 </form>
 
 
