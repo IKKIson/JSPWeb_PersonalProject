@@ -40,18 +40,18 @@ private HotelDatabaseConnection hotelDatabase;
 	}
 	
 	//select all rooomid for check page
-	public int[] SelectRoomIdofList(String roomName) {
-		int []roomIdSet = null;
+	public int[] SelectRoomIdofList(String roomName, int roomNum) {
+		int []roomIdSet = new int[roomNum];
 		int i = 0;
 		
 		try {
 			PreparedStatement ps 
 			= this.hotelDatabase.conn.prepareStatement("select roomid from roomlist where roomname = ?");
+			ps.setString(1, roomName);
 			ResultSet rs = ps.executeQuery();
-			roomIdSet = new int[rs.getRow()];
+
 			while(rs.next()){
 				int roomid = 0;
-				//room.setRoomtype(rs.getInt("roomtype"));
 				roomid = rs.getInt("roomid");
 				
 				roomIdSet[i] = roomid;

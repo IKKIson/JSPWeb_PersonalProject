@@ -11,8 +11,8 @@
 객실 예약
 </span>
 </center>
-	
-<form action="../ViewJSP/Reservation.jsp" method="post">
+
+<form action="../ViewJSP/Reservation.jsp" method="POST">
 	<h2>[객실 종류]</h2><br>
 	<input type="radio" name="rdoRoom" value="1">수페리어<br>
 	<input type="radio" name="rdoRoom" value="2">더블 수페리어<br>
@@ -36,7 +36,7 @@
 	체크인 : <input type = "text" name = "checkin" width = "50"><br><br>
 	체크아웃 : <input type = "text" name = "checkout" width = "50"><br><br>
 	<br><br>
-	<input type = "submit" value = "예약하기"><br><br>
+	<input type = "submit" value = "예약하기"/><br><br>
 	<input type = "reset" value = "취소" onclick = "document.location.href='../View/Main.html';"/>
 </form>
 

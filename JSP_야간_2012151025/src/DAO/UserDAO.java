@@ -59,8 +59,6 @@ public class UserDAO {
 			ps.setInt(5, birth);
 			ps.setString(6, card);
 			ps.addBatch();			
-
-			System.out.println("SignUp New Member in InsertUser()");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

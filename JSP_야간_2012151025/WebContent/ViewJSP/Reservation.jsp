@@ -1,28 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
 <%@ page import = "DAO.*" %>  
 <%@ page import = "Model.*" %>  
 <%@ page import="Controller.ReservationController"%>
 <%@ page import = "java.util.*" %>
-<%@ page import = "java.text.SimpleDateFormat;"%>  
+<%@ page import = "java.text.SimpleDateFormat"%>  
 
 <% request.setCharacterEncoding("UTF-8"); %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>°´½Ç¿¹¾à</title>
+<title>ê°ì‹¤ì˜ˆì•½</title>
 </head>
 <body bgcolor="FFFF99">
 
-
-<%
-String a = request.getParameter("rdoRoom");
-System.out.println("rdoRoom : "+a);%>
-¹æ:<%=a %>
-//¿¹¾à
 <%
  if(request.getParameter("rdoRoom") != null && request.getParameter("checkin") != null && request.getParameter("checkout") != null) {
 	 ReservationTable reservationTable = new ReservationTable();
@@ -39,7 +31,7 @@ System.out.println("rdoRoom : "+a);%>
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 	//fin
 	ReservationDAO reservationDAO = new ReservationDAO();
-	int reserveCode = reservationTable.getReservatecode();
+	int reserveCode = 0;
 	
 	//1. input roomtype
 	if(request.getParameter("rdoRoom").equals("1")) {
@@ -62,14 +54,16 @@ System.out.println("rdoRoom : "+a);%>
 	
 	//2. input Primary key- reservation code and reservationdate
 	reservationTable.setReservatecode(timecode);
+	reservationTable.setReservatedate(str);
 	
 	//3. input user emailid using session
 	reservationTable.setEmailid(String.valueOf(session.getAttribute("sessionId")));
 	
 	//4. input room price using roomtypeDB's DAO
 	reservationTable.setPrice(roomTypeDAO.SelectRoomPrice(reservationTable.getRoomtype()));
+
 	
-	//5. input room id using roomlistDB's DAO with Random Method in Controller
+ 	//5. input room id using roomlistDB's DAO with Random Method in Controller
 	reservationTable.setRoomid(controller.ChooseRoomId(reservationTable.getRoomtype()));
 	
 	//6. input checkin and checkout
@@ -80,7 +74,7 @@ System.out.println("rdoRoom : "+a);%>
 	reservationTable.setCheckin(checkinDate);
 	reservationTable.setCheckout(checkOutDate);
 	
-	//Final - insert these in DB 
+	 //Final - insert these in DB 
 	reservationDAO.InsertReservation(
 			reservationTable.getReservatecode(), 
 			reservationTable.getEmailid(), 
@@ -91,13 +85,13 @@ System.out.println("rdoRoom : "+a);%>
 			reservationTable.getCheckin(), 
 			reservationTable.getCheckout());
 	
-	out.println("<script>alert('¿¹¾àÁ¤º¸ ÀúÀåÈ¯·á. °áÁ¦Ã¢À¸·Î ³Ñ¾î°©´Ï´Ù.')</script>");
-	request.setAttribute("Reservation", reserveCode);
-	response.sendRedirect("ReservationPayment.jsp"); 
-
+	//out.println("<script>alert('ì˜ˆì•½ì •ë³´ ì €ì¥í™˜ë£Œ. ê²°ì œì°½ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.')</script>");
+	reserveCode = reservationTable.getReservatecode();
+ 	request.setAttribute("Reservation", reserveCode);
+	response.sendRedirect("ReservationPayment.jsp");	
 
 } else {
-	out.println("<script>alert('¿¹¾à½ÇÆĞ. Á¤È®È÷ ÀÔ·ÂÇØÁÖ¼¼¿ä')");
+	out.println("<script>alert('ì˜ˆì•½ì‹¤íŒ¨. ì •í™•íˆ ì…ë ¥í•´ì£¼ì„¸ìš”')");
 	out.println("document.location.href = '../View/Reservation.html';</script>");
 }
             

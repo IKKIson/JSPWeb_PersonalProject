@@ -22,11 +22,11 @@ public class ReservationController {
 		int roomNum = roomTypeDAO.NumberOfRoomTypes(roomtype);
 		String roomName = roomTypeDAO.SelectRoomName(roomtype);
 		int[] roomSet = new int[roomNum];
-		
-		RoomListDAO roomListDAO = new RoomListDAO();
-		roomSet = roomListDAO.SelectRoomIdofList(roomName);
+		RoomListDAO roomListDAO = new RoomListDAO();		
+		roomSet =  roomListDAO.SelectRoomIdofList(roomName, roomNum);		
 		Random random = new Random();
-		
-		return roomSet[random.nextInt(roomNum)];
+		int result = 0;
+		result = roomSet[random.nextInt(roomNum)];
+		return result;
 	}
 }

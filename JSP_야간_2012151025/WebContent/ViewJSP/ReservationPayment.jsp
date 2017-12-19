@@ -1,45 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <%@ page import = "DAO.*" %>  
 <%@ page import = "Model.*" %>  
 <%@ page import = "Controller.*" %>  
 <%@ page import = "java.util.*" %>
 
+<%
+int reserveCode = Integer.valueOf(request.getAttribute("Reservation").toString());
+
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 <center>
 <span style="font-weight: bold; font-size: 2em; line-height: 1.0em; color: 660000; font-family: arial; ">
-¿¹¾à¿Ï·á
+ì˜ˆì•½ì™„ë£Œ
 </span>
-<h1>ÀÌ¿ëÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù.</h1>
+<h1>ì´ìš©í•´ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤.</h1>
 <hr><br>
 </center>
 
 <%
-	int reserveCode = Integer.parseInt(request.getParameter("reserveCode"));
 	ReservationDAO reservationDAO = new ReservationDAO();
 	ReservationTable reservationTable = reservationDAO.SelectCheckReceipt(reserveCode);
 	ReservationController reservationController = new ReservationController();
 	
-	out.println("¿¹¾à ÀÏ·Ã¹øÈ£ : " + reservationTable.getReservatecode() + "<br>");
-	out.println("¿¹¾àÀÚ °èÁ¤ : " + reservationTable.getEmailid() + "<br>");
-	out.println("¹æ Á¾·ù : " + reservationController.ConvertRoomTypeToRoomName(reservationTable.getRoomtype()) + "<br>");
-	out.println("¹æ È£¼ö : " + reservationTable.getRoomid() + "È£ <br>");
-	out.println("°áÀç±İ¾× : " + reservationTable.getPrice() + "<br>");
-	out.println("°áÀç ³¯Â¥ : " + reservationTable.getReservatedate() + "<br>");
-	out.println("Ã¼Å©ÀÎ ³¯Â¥ : " + reservationTable.getCheckin() + "<br>");
-	out.println("Ã¼Å©¾Æ¿ô ³¯Â¥ : " + reservationTable.getCheckout() + "<br>");
+	out.println("ì˜ˆì•½ ì¼ë ¨ë²ˆí˜¸ : " + reservationTable.getReservatecode() + "<br>");
+	out.println("ì˜ˆì•½ì ê³„ì • : " + reservationTable.getEmailid() + "<br>");
+	out.println("ë°© ì¢…ë¥˜ : " + reservationController.ConvertRoomTypeToRoomName(reservationTable.getRoomtype()) + "<br>");
+	out.println("ë°© í˜¸ìˆ˜ : " + reservationTable.getRoomid() + "í˜¸ <br>");
+	out.println("ê²°ì¬ê¸ˆì•¡ : " + reservationTable.getPrice() + "<br>");
+	out.println("ê²°ì¬ ë‚ ì§œ : " + reservationTable.getReservatedate() + "<br>");
+	out.println("ì²´í¬ì¸ ë‚ ì§œ : " + reservationTable.getCheckin() + "<br>");
+	out.println("ì²´í¬ì•„ì›ƒ ë‚ ì§œ : " + reservationTable.getCheckout() + "<br>");
 	out.println("<br>");
 %>
 <hr><br>
 
-<button type = "button" onclick = "document.location.href='../View/Main.html';">È¨À¸·Î</button>
+<button type = "button" onclick = "document.location.href='../View/Main.html';">í™ˆìœ¼ë¡œ</button>
 
 </body>
 </html>

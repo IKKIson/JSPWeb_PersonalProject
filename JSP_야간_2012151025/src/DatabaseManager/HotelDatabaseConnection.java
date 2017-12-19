@@ -40,11 +40,11 @@ public class HotelDatabaseConnection {
 //		return conn;
 //	}    
     
-//	@Override
-//	protected void finalize() throws Throwable {
-//		// TODO Auto-generated method stub
-//		this.conn.close();
-//		
-//		super.finalize();
-//	}
+	@Override
+	protected void finalize() throws Throwable {
+		// TODO Auto-generated method stub
+		this.conn.close();
+		
+		super.finalize();
+	}
 }
