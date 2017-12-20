@@ -6,7 +6,7 @@ public class HotelDatabaseConnection {
     private volatile static HotelDatabaseConnection HotelDatabaseUniqueInstance;
     private static final String root = "root";
 	private static final String passwd = "ihson83729405";
-	private static final String strUrl = "jdbc:mysql://127.0.0.1:3306/jsp_¾ß°£_2012151025?useUnicode=true&characterEncoding=euc-kr";
+	private static final String strUrl = "jdbc:mysql://127.0.0.1:3306/jsp_n_2012151025?useUnicode=true&characterEncoding=euc-kr";
 	
 	private Connection conn;
 

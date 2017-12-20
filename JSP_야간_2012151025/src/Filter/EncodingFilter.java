@@ -37,7 +37,7 @@ public class EncodingFilter implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		if(request.getCharacterEncoding() == null) {
-			request.setCharacterEncoding("UTF-8");
+			//request.setCharacterEncoding("UTF-8");
 			// pass the request along the filter chain
 			chain.doFilter(request, response);
 		}
