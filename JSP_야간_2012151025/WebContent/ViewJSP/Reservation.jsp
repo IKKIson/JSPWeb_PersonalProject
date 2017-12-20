@@ -73,6 +73,7 @@
 	String checkOutDate = request.getParameter("checkout");
 	reservationTable.setCheckin(checkinDate);
 	reservationTable.setCheckout(checkOutDate);
+
 	
 	 //Final - insert these in DB 
 	reservationDAO.InsertReservation(
@@ -87,8 +88,8 @@
 	
 	//out.println("<script>alert('예약정보 저장환료. 결제창으로 이동합니다.')</script>");
 	reserveCode = reservationTable.getReservatecode();
- 	request.setAttribute("Reservation", reserveCode);
-	response.sendRedirect("ReservationPayment.jsp");	
+ 	session.setAttribute("Reservation", reserveCode);
+	response.sendRedirect("ReservationPayment.jsp");
 
 } else {
 	out.println("<script>alert('예약실패. 정확히 입력해주세요')");

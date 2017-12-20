@@ -19,7 +19,10 @@ ArrayList<RoomTypeTable> roomTypelist = roomTypeDAO.selectAllRoomType();
 <span style="font-weight: bold; font-size: 2em; line-height: 1.0em; color: 660000; font-family: arial; ">
 객실안내
 </span>
-<h1>객실 안내</h1><hr><br><br>
+<hr><br>
+<button type = "button" onclick = "document.location.href='../View/Introduce.html';">뒤로가기</button>
+<button type = "button" onclick = "document.location.href='../View/Main.html';">홈으로</button>
+<hr><br>
 <%
 for(int i = 0; i<roomTypelist.size(); i++){
 	out.print("<hr>" + roomTypelist.get(i).getRoomtype() + ". ");

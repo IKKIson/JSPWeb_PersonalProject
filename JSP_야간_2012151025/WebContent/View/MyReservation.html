@@ -5,14 +5,40 @@
 <title>너의 예약조회</title>
 </head>
 <body bgcolor="FFFF99">
-나의 예약확인하기<br>
 
-<form action="../ViewJSP/MyReservation.jsp" method="post">
-E-mail : <input type = "text" name = "emailid" width = "50"><br><br>
-<input type = "submit" value = "조회"><br><br>
-<input type = "reset" value = "취소" onclick = "document.location.href='Main.html';"/><br>
+<hr><br>
+나의 예약확인하기<br>
+<form action="../ViewJSP/MyReservationCheck.jsp" method="post">
+<input type = "submit" value = "조회">
+</form>
+<br><br>
+
+<hr><br>
+나의 예약 방종류 바꾸기<br>
+<form action="../ViewJSP/MyReservationUpdate.jsp" method="post">
+Reservate code : <input type = "text" name = "reservatecode" width = "50"><br>
+	<h2>[객실 종류]</h2><br>
+	<input type="radio" name="rdoRoom" value="1">수페리어<br>
+	<input type="radio" name="rdoRoom" value="2">더블 수페리어<br>
+	<input type="radio" name="rdoRoom" value="3">트윈 수페리어<br>
+	<input type="radio" name="rdoRoom" value="4">디럭스<br>
+	<input type="radio" name="rdoRoom" value="5">디럭스 풀<br>
+	<input type="radio" name="rdoRoom" value="6">이그제큐디브<br>
+	<input type="radio" name="rdoRoom" value="7">스위트<br>
+	<input type="radio" name="rdoRoom" value="8">그랜드 스위트<br>
+	<br>
+<input type = "submit" value = "예약 변경 신청">
 </form>
 
+<hr><br>
+나의 예약취소하기<br>
+<form action="../ViewJSP/MyReservationDelete.jsp" method="post">
+Reservate code : <input type = "text" name = "reservatecode" width = "50"><br>
+<input type = "submit" value = "예약 취소 신청">
+</form>
+
+<hr><br>
+<input type = "reset" value = "뒤로가기" onclick = "document.location.href='Main.html';"/>
 
 </body>
 </html>

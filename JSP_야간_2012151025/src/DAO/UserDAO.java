@@ -21,7 +21,7 @@ public class UserDAO {
 		UserTable user = new UserTable();	
 		try {
 			PreparedStatement ps
-			= this.hotelDatabase.conn.prepareStatement("select * from user where emailid=? and password=?");
+			= this.hotelDatabase.getInstance().getConn().prepareStatement("select * from user where emailid=? and password=?");
 			ps.setString(1, eid);
 			ps.setString(2, pw);
 			ResultSet rs = ps.executeQuery();
@@ -51,7 +51,7 @@ public class UserDAO {
 	public void InsertUser(String emailid, String pw, String name, int tel, int birth, String card) throws ParseException {
 		PreparedStatement ps = null;
 		try {
-			ps = this.hotelDatabase.conn.prepareStatement("insert into user values (?,?,?,?,?,?)");
+			ps = this.hotelDatabase.getInstance().getConn().prepareStatement("insert into user values (?,?,?,?,?,?)");
 			ps.setString(1, emailid);
 			ps.setString(2, pw);
 			ps.setString(3, name);
@@ -67,8 +67,8 @@ public class UserDAO {
 			try {
 				ps.executeBatch();
 				ps.close();
-				this.hotelDatabase.conn.commit();
-				//this.hotelDatabase.conn.close();
+				this.hotelDatabase.getInstance().getConn().commit();
+				//this.hotelDatabase.getInstance().getConn().close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -82,7 +82,7 @@ public class UserDAO {
 		
 		try {
 			PreparedStatement ps 
-			= this.hotelDatabase.conn.prepareStatement("select * from user");
+			= this.hotelDatabase.getInstance().getConn().prepareStatement("select * from user");
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()){
@@ -106,10 +106,37 @@ public class UserDAO {
 		return userlist;
 	}
 	
+	public UserTable SelectEmailidCheck(String inputId){
+		UserTable user = new UserTable();
+		try {
+			PreparedStatement ps 
+			= this.hotelDatabase.getInstance().getConn().prepareStatement("select * from user where emailid = ?");
+			ps.setString(1, inputId);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()){
+				user.setEmailid(rs.getString("emailid"));
+				user.setPassword(rs.getString("password"));
+				user.setUsername(rs.getString("username"));
+				user.setTell(rs.getInt("tell"));
+				user.setBirthday(rs.getInt("birthday"));
+				user.setCreditcard(rs.getString("creditcard"));
+			} else {
+				user = null;
+			}
+				
+			ps.close();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return user;
+	}
+	
 	@Override
 	protected void finalize() throws Throwable {
 		// TODO Auto-generated method stub
-		hotelDatabase.conn.close();
+		this.hotelDatabase.getInstance().getConn().close();
 		
 		super.finalize();
 	}

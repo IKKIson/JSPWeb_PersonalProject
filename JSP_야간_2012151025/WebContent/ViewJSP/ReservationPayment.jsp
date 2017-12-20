@@ -6,7 +6,8 @@
 <%@ page import = "java.util.*" %>
 
 <%
-int reserveCode = Integer.valueOf(request.getAttribute("Reservation").toString());
+int reserveCode = (int) session.getAttribute("Reservation");
+System.out.println("예약 결제 확인 : " + session.getAttribute("Reservation"));
 
 %>
 
@@ -16,7 +17,7 @@ int reserveCode = Integer.valueOf(request.getAttribute("Reservation").toString()
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body bgcolor="FFFF99">
 
 <center>
 <span style="font-weight: bold; font-size: 2em; line-height: 1.0em; color: 660000; font-family: arial; ">
@@ -26,6 +27,7 @@ int reserveCode = Integer.valueOf(request.getAttribute("Reservation").toString()
 <hr><br>
 </center>
 
+<h2>결제 내용 확인</h2>
 <%
 	ReservationDAO reservationDAO = new ReservationDAO();
 	ReservationTable reservationTable = reservationDAO.SelectCheckReceipt(reserveCode);

@@ -1,25 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import = "DAO.*" %>  
 <%@ page import = "Model.*" %>  
 <%@ page import = "Controller.*" %>  
-<%@ page import = "java.util.*" %>  
+<%@ page import = "java.util.*" %> 
+
+<jsp:setProperty property="*" name="user"/>
+
+
 <%
 ReservationDAO reservationDAO = new ReservationDAO();
-ArrayList<ReservationTable> reservationlist = reservationDAO.SelectAllReservation();
+ArrayList<ReservationTable> reservationlist = reservationDAO.SelectCheckMyReservation(session.getAttribute("sessionId").toString());
 ReservationController reservationController = new ReservationController();
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>호텔 전체예약현황</title>
+<title>나의 예약 조회</title>
 </head>
 <body bgcolor="FFFF99">
 
-<button type = "button" onclick = "document.location.href='../View/Check.html';">뒤로가기</button>
+
+<button type = "button" onclick = "document.location.href='../View/MyReservation.html';">뒤로가기</button>
 <button type = "button" onclick = "document.location.href='../View/Main.html';">홈으로</button>
 <br><br>
 
@@ -38,10 +43,8 @@ for(int i = 0; i<reservationlist.size(); i++){
 }
 %>
 
-<button type = "button" onclick = "document.location.href='../View/Check.html';">뒤로가기</button>
+<button type = "button" onclick = "document.location.href='../View/MyReservation.html';">뒤로가기</button>
 <button type = "button" onclick = "document.location.href='../View/Main.html';">홈으로</button>
-
-
 
 </body>
 </html>

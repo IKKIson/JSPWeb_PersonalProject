@@ -21,7 +21,7 @@ public class RoomTypeDAO {
 		
 		try {
 			PreparedStatement ps 
-			= this.hotelDatabase.conn.prepareStatement("select * from roomtype");
+			= this.hotelDatabase.getInstance().getConn().prepareStatement("select * from roomtype");
 			ResultSet rs = ps.executeQuery();
 			System.out.println("RoomTypeDAO:selectAllRoomType(): conn and Preparedstatement");
 			while(rs.next()){
@@ -51,7 +51,7 @@ public class RoomTypeDAO {
 		int price = 0;		
 		try {
 			PreparedStatement ps 
-			= this.hotelDatabase.conn.prepareStatement("select price from roomtype where roomtype = ?");
+			= this.hotelDatabase.getInstance().getConn().prepareStatement("select price from roomtype where roomtype = ?");
 			ps.setInt(1, roomtype);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
@@ -70,7 +70,7 @@ public class RoomTypeDAO {
 		String roomname = null;		
 		try {
 			PreparedStatement ps 
-			= this.hotelDatabase.conn.prepareStatement("select roomname from roomtype where roomtype = ?");
+			= this.hotelDatabase.getInstance().getConn().prepareStatement("select roomname from roomtype where roomtype = ?");
 			ps.setInt(1, roomtype);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
@@ -91,7 +91,7 @@ public class RoomTypeDAO {
 		
 		try {
 			PreparedStatement ps 
-			= this.hotelDatabase.conn.prepareStatement("select amount from roomtype where roomtype = ?");
+			= this.hotelDatabase.getInstance().getConn().prepareStatement("select amount from roomtype where roomtype = ?");
 			ps.setInt(1, roomtype);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
@@ -110,7 +110,7 @@ public class RoomTypeDAO {
 	@Override
 	protected void finalize() throws Throwable {
 		// TODO Auto-generated method stub
-		hotelDatabase.conn.close();
+		this.hotelDatabase.getInstance().getConn().close();
 		
 		super.finalize();
 	}

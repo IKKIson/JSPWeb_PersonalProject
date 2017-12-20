@@ -13,7 +13,8 @@ public class ReservationController {
 	
 	public String ConvertRoomTypeToRoomName(int roomtype){
 		RoomTypeDAO roomTypeDAO = new RoomTypeDAO();
-		String roomName = roomTypeDAO.SelectRoomName(roomtype);
+		String roomName = null;
+		roomName = roomTypeDAO.SelectRoomName(roomtype);
 		return roomName;
 	}
 	

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ page import = "DAO.*" %>  
-<%@ page import = "Model.*" %>     
+<%@ page import = "Model.*" %> 
+<%@ page import = "Controller.*" %>        
 
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -25,6 +26,15 @@
 <hr><br>
 </center>
 
+<%
+UserController controller = new UserController();
+
+if(!controller.isExistEmailidWithDB(user.getEmailid())){
+	out.println("<script>alert('회원가입 실패 : 이메일/아이디 중복')");
+	out.println("document.location.href = '../View/SignUp.html';</script>");
+}
+
+%>
 
 
 <%
@@ -43,7 +53,7 @@ if(user.getEmailid() !=null && user.getPassword() !=null && user.getUsername() !
 	out.println("결제 : " + user.getCreditcard() + "<br>");
 	
 } else { // SignUp element has empty more than one
-	out.println("<script>alert('회원가입 실패 정보를 정확인 기재해주세요')");
+	out.println("<script>alert('회원가입 실패 : 정보를 정확인 기재해주세요')");
 	out.println("document.location.href = '../View/SignUp.html';</script>");
 }
 

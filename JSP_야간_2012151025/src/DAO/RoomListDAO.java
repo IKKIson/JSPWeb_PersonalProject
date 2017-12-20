@@ -20,7 +20,7 @@ private HotelDatabaseConnection hotelDatabase;
 		
 		try {
 			PreparedStatement ps 
-			= this.hotelDatabase.conn.prepareStatement("select * from roomtype");
+			= this.hotelDatabase.getInstance().getConn().prepareStatement("select * from roomtype");
 			ResultSet rs = ps.executeQuery();
 			roomIdSet = new int[rs.getRow()];
 			while(rs.next()){
@@ -46,7 +46,7 @@ private HotelDatabaseConnection hotelDatabase;
 		
 		try {
 			PreparedStatement ps 
-			= this.hotelDatabase.conn.prepareStatement("select roomid from roomlist where roomname = ?");
+			= this.hotelDatabase.getInstance().getConn().prepareStatement("select roomid from roomlist where roomname = ?");
 			ps.setString(1, roomName);
 			ResultSet rs = ps.executeQuery();
 
@@ -68,7 +68,7 @@ private HotelDatabaseConnection hotelDatabase;
 	@Override
 	protected void finalize() throws Throwable {
 		// TODO Auto-generated method stub
-		hotelDatabase.conn.close();
+		this.hotelDatabase.getInstance().getConn().close();
 		
 		super.finalize();
 	}
