@@ -5,7 +5,7 @@ import java.sql.*;
 public class HotelDatabaseConnection {
     private volatile static HotelDatabaseConnection HotelDatabaseUniqueInstance;
     private static final String root = "root";
-	private static final String passwd = "ihson83729405";
+	private static final String passwd = "****************";
 	private static final String strUrl = "jdbc:mysql://127.0.0.1:3306/jsp_n_2012151025?useUnicode=true&characterEncoding=euc-kr";
 	
 	private Connection conn;
@@ -21,7 +21,7 @@ public class HotelDatabaseConnection {
 		
 		try {
 			conn = DriverManager.getConnection(this.strUrl, this.root, this.passwd);
-			conn.setAutoCommit(false); //ÀÌ ±â´ÉÀ» »ç¿ëX
+			conn.setAutoCommit(false); //Ã€ÃŒ Â±Ã¢Â´Ã‰Ã€Â» Â»Ã§Â¿Ã«X
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
